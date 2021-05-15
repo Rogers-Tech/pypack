@@ -1,0 +1,338 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+	<title>PyPack</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'mdb/css/mdb.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fontawesome/css/all.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+	<link rel="shortcut icon" href="{% static "image/kivy.ico" %}" type="image/x-icon"/>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+
+</head>
+<body>
+	<div class="container-fluid p-0 m-0 navv">
+		<div class="container-fluid p-0 m-0">
+			<div class="container-fluid p-0 m-0 navt">
+				<h3 class="title text-white">PyPack</h3>ear
+				<div class="m-0 tab">
+					<button id="homee" class="tabs ripple tab-active" onclick="home()">home</button>
+					<button id="logg" class="tabs ripple" onclick="logs()"><i class="fas fa-log"></i> logs</button>
+					<button id="uplo" class="tabs ripple" onclick="parar()">upload</button>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+		<!-- <div class="banner">
+			<div class="coat">
+				<h3 class="text-light cli">Package Python-kivy apps easy</h3>
+				
+			</div>
+		</div> -->
+
+		<div class="alert-success text-center p-2 dono" id="pruf" style="border:1px solid #badbcc;">
+			<p class="" style="text-align:center; color:rgb(51,51,51);"><h3 class="d-inline-block"><small><i class="fas fa-check text-success d-inline-block"></i></small> Successfully</h3> <span style="color:rgb(51,51,51);">uploading the zip file, please keep your connection strong.</span></p>
+		</div>
+
+		<div class="alert-danger text-center p-2 dono" id="prof" style="border:1px solid #f5c2c7;">
+			<p class="" style="text-align:center; color:rgb(51,51,51);"><h3 class="d-inline-block" style="color:rgb(51,51,51);"><small><i class="fas fa-times text-danger d-inline-block"></i></small> Failed</h3> <span style="color:rgb(51,51,51);">, please choose a zipfile.</span></p>
+		</div>
+
+		<div class="container-fluid p-0 choose" id="choose">
+			<!--i class="fas fa-rocket fa-5x pb-5"></i-->
+
+			<h3 class="p-2 mt-4">Python-kivy app packaging made very easy.</h3>
+			<img src="{% static "image/kivy.svg" %}" class="img-fluid kivy">
+			<button class="btn btn-primary ripple" id="call_upload" onclick="parar()">upload <i class="fas fa-rocket mine text-light"></i></button>
+		</div>
+
+		<div class="container-fluid m-0 manifest" id="manifest">
+			<div class="p1">
+				<i class="fas fa-hands-helping text text-icon fa-3x mb-4"></i>
+				<p>Simplify your life by accepting my help where I will package your kivy app and i have no need to check its  source code.</p>
+			</div>
+			<div class="p2">
+				<i class="fas fa-medal fa-3x text text-icon mb-4"></i>
+				<p>This website is licensed under the MIT License to prove its help and offer which are is very free and safe to use. Link for license.</p>
+			</div>
+			<div class="p3">
+				<i class="fas fa-bug fa-3x text text-icon mb-4"></i>
+				<p>Incase of any error found during the packaging, it will be put on the website so, please pay visits to the website to check for your progress.</p>
+			</div>
+		</div>
+
+
+		<div class="not" id="not">
+			<div class="alert al alert-primary">
+				<p class="text-center"><b class="al-text">Warning</b></p>
+				<div class="d-flex justify-content-around"><i class="fab fa-android fa-3x al-text"></i><i class="fab fa-windows fa-3x al-text"></i></div>
+				<p class="al-text text-center"><b class="al-text">Only</b> for android os and windows os, please.</p>
+			</div>
+		</div>
+
+		
+		<div class="container-fluid  m-0 rate" id="rate">
+			<div class="rater mt-5">
+				<p class="display-1">Rate us</p>
+				<p>Please show me how you feel for this website by rating it below.</p>
+				<p>
+					<span><i class="fas fa-star fa-1x" id="star1"></i></span> 
+					<span><i class="fas fa-star fa-1x" id="star2"></i></span> 
+					<span><i class="fas fa-star fa-1x" id="star3"></i></span> 
+					<span><i class="fas fa-star fa-1x" id="star4"></i></span> 
+					<span><i class="fas fa-star fa-1x" id="star5"></i></span></p>
+
+				<div class="re">
+
+					<div class="rt">
+						<form class="form-group" method="Post">
+							{% csrf_token %}
+							{{ rate.stars }}
+							{{ rate.comment }}
+							<button onclick="rated()" type="submit" class="btn-sm btn-outline-primary ripple">rate <i class="fas fa-star mine text-primary"></i></button>
+						</form>
+					</div>
+					
+					<div class="rates">
+						<div class="rate1">
+							<span><p>1 star&nbsp; &nbsp;</p></span>
+							<div class="level1">
+								<div class="can1"></div>
+							</div>
+						</div>
+						<div class="rate1">
+							<span><p>2 stars &nbsp;</p></span>
+							<div class="level1">
+								<div class="can2"></div>
+							</div>
+						</div>
+						<div class="rate1">
+							<span><p>3 stars &nbsp;</p></span>
+							<div class="level1">
+								<div class="can3"></div>
+							</div>
+						</div>
+						<div class="rate1">
+							<span><p>4 stars &nbsp;</p></span>
+							<div class="level1">
+								<div class="can4"></div>
+							</div>
+						</div>
+						<div class="rate1">
+							<span><p>5 stars &nbsp;</p></span>
+							<div class="level1">
+								<div class="can5"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				
+			</div>
+		</div>
+
+		<div class="container-fluid  m-0 use" id="tutorial">
+			<div class="user">
+				<p class="display-2">Tutorial</p>
+				<iframe src="https://www.youtube.com/watch?v=KR3ReBwtqvc" class="img-fluid"></iframe>
+			</div>
+		</div>
+
+
+		<div class="thank" id="thank">
+			<h5 class="text-center">Thankyou for visiting the website.</h5>
+			<div class="join">
+				<a class="links" href=""><i class="fab fa-github fa-2x"></i></a>
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+
+	<div class="done" id="logs">
+			<div class="backup" id="backup">
+				<h1 class="mt-5 tt">Checkout</h1>
+
+					<div class="per">
+						<div class="mypro ripple">
+							<div class="got">
+								<div class="profile"></div>
+							</div>
+							<div class="info">
+								<p class="p-0 m-0 pt-1 font-weight-bold">Sample <small>No people sofar</small></p>
+								<p class="p-0 m-0 pt-1 pea">
+									Well this is just a sample log because no people have yet used the website. Your app was successfully compiled into an apk file so you can get it from this link and see all the logs that happened during the code compiling, click got continue.
+								</p>
+								<div class="dow">
+									<a class="download text-primary" href="#">download <i class="fas fa-cloud-download-alt text-primary"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+			<div class="page" id="rogers">
+				<p class="back"><i class="fas fa-arrow-left pl-4 ripple"></i></p>
+				<div class="pro">
+					<div class="img"></div>
+				</div>
+				<p class="namer">Bill Gates</p>
+				
+				<div class="bns">
+					<a class="btn btn-danger disabled">failed <i class="fas fa-exclamation-triangle text-white"></i></a>
+					<a href="#" class="btn btn-outline-primary disabled"> thank you</a>
+				</div>
+
+				<p class="success-danger text-right text-danger" id="tru"><i class="fas fa-exclamation-triangle text-danger"></i> Failed</p>
+				<div class="logged">
+					<p class="lo" id="config">Your app has successfully compiled into an apk so get ready to leave a comment after using your app.<br>App compiling logs include.</p>
+					<div class="compiled">
+					<pre id="code">
+[INFO   ] [Logger      ] Record log in /home/rogers/.kivy/logs/kivy_21-05-11_0.txt
+[INFO   ] [Kivy        ] v2.0.0
+[INFO   ] [Kivy        ] Installed at "/home/rogers/.local/lib/python3.8/site-packages/kivy/__init__.py"
+[INFO   ] [Python      ] v3.8.5 (default, Jul 28 2020, 12:59:40) 
+[GCC 9.3.0]
+[INFO   ] [Python      ] Interpreter at "/usr/bin/python3"
+[INFO   ] [Factory     ] 186 symbols loaded
+[INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
+[INFO   ] [Window      ] Provider: sdl2
+[INFO   ] [GL          ] Using the "OpenGL" graphics system
+[INFO   ] [GL          ] Backend used
+[INFO   ] [GL          ] OpenGL version
+[INFO   ] [GL          ] OpenGL renderer 
+[INFO   ] [GL          ] OpenGL parsed version: 2, 1
+[INFO   ] [GL          ] Shading version 
+[INFO   ] [GL          ] Texture max size <8192>
+[INFO   ] [GL          ] Texture max units <16>
+[INFO   ] [Window      ] auto add sdl2 input provider
+[INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
+[INFO   ] [Text        ] Provider: sdl2
+[INFO   ] [Clipboard   ] Provider: xclip
+[INFO   ] [CutBuffer   ] cut buffer support enabled
+[INFO   ] [GL          ] NPOT texture support is available
+[INFO   ] [Base        ] Start application main loop
+[INFO   ] [Base        ] Leaving application in progress...
+
+						</pre>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="page" id="page">
+				<p class="back"><i class="fas fa-arrow-left pl-4 ripple"></i></p>
+				<div class="pro">
+					<div class="img"></div>
+				</div>
+				<p class="namer">Rogers</p>
+				
+				<div class="bns">
+					<a href="#" class="btn btn-primary"><i class="fas fa-download text-white"></i> download</a>
+					<a href="#" class="btn btn-outline-primary disabled"> thank you</a>
+				</div>
+
+				<p class="success text-success" id="tru"> <i class="fas fa-check text-success"></i> Successful</p>
+				<div class="logged">
+					<p class="lo" id="config">Your app has successfully compiled into an apk so get ready to leave a comment after using your app.<br>App compiling logs include.</p>
+					<div class="compiled">
+					<pre id="code">
+[INFO   ] [Logger      ] Record log in /home/rogers/.kivy/logs/kivy_21-05-11_0.txt
+[INFO   ] [Kivy        ] v2.0.0
+[INFO   ] [Kivy        ] Installed at "/home/rogers/.local/lib/python3.8/site-packages/kivy/__init__.py"
+[INFO   ] [Python      ] v3.8.5 (default, Jul 28 2020, 12:59:40) 
+[GCC 9.3.0]
+[INFO   ] [Python      ] Interpreter at "/usr/bin/python3"
+[INFO   ] [Factory     ] 186 symbols loaded
+[INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
+[INFO   ] [Window      ] Provider: sdl2
+[INFO   ] [GL          ] Using the "OpenGL" graphics system
+[INFO   ] [GL          ] Backend used
+[INFO   ] [GL          ] OpenGL version
+[INFO   ] [GL          ] OpenGL renderer 
+[INFO   ] [GL          ] OpenGL parsed version: 2, 1
+[INFO   ] [GL          ] Shading version 
+[INFO   ] [GL          ] Texture max size <8192>
+[INFO   ] [GL          ] Texture max units <16>
+[INFO   ] [Window      ] auto add sdl2 input provider
+[INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
+[INFO   ] [Text        ] Provider: sdl2
+[INFO   ] [Clipboard   ] Provider: xclip
+[INFO   ] [CutBuffer   ] cut buffer support enabled
+[INFO   ] [GL          ] NPOT texture support is available
+[INFO   ] [Base        ] Start application main loop
+[INFO   ] [Base        ] Leaving application in progress...
+
+						</pre>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+			<div class="visit me">
+				<a href="#" class="side-link"><i class="fab fa-whatsapp text-success fa-2x"></i></a>
+				<a href="#" class="side-link"><i class="fab fa-facebook-f text-primary fa-2x"></i></a>
+				<a href="#" class="side-link"><i class="fab fa-github text-dark fa-2x"></i></a>
+			</div>
+
+			<div class="container-fluid p-0 uplo" id="par">
+				<div class="container-fluid upl">
+					<h3 class="display-4 text-center mt-5">Upload</h3>
+					<form class="form-group text-center mt-5" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						{{ file.text }}
+						{{ file.zip_file }}
+						<!--input type="file" class="form-contro m-2 form-control-file" name=""-->
+						<button class="btn btn-primary mt-3 ripple" onclick="aler()">submit</button>
+					</form>
+
+					<div class="container-fluid uploaded mt-5">
+						{% for load in load %}
+							<div class="each">
+								<div class="det-img">
+									<div class="imgg1">
+									</div>
+								</div>
+								<div class="det">
+									<p class="m-0 p-0 font-weight-bold">{{ load.text }}</p>
+									<p class="m-0 p-0">Uploaded a zip file <i class="text-dark">successfully</i> on &nbsp;<a href="{{ load.zip_file }}" class="btn-sm lit text-center btn-primary bobo downloader" download>download</a></p>
+									<p class="m-0 p-0 text-right time">{{ load.time }}</p>
+								</div>
+							</div>	
+						{% endfor %}						
+					</div>
+
+					<form class="form-group m-0 p-0 mb-5">
+						<input id="key" type="text" class="form-control m-0 mt-3" placeholder="Administrator key" name="">
+					</form>
+				</div>
+			</div>
+
+
+	<script type="text/javascript" src="{% static 'mdb/js/mdb.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'main.js' %}"></script>
+
+</body>
+</html>
